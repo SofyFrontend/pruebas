@@ -1,0 +1,21 @@
+:root{
+    --amarillo: #f7d717;
+    --amarillo2: #BDA412;
+    --rojo: #FF2754;
+    --granate: #C5022C;
+    --cian: #0080FF;
+    --azul: #0064A4;
+    --negro:#000000;
+    --blanco: #ffffff;
+}
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500&display=swap');
+/* @font-face {
+    font-family: 'Lexend Deca', sans-serif;
+    src: url(../assets/fonts/);
+} */
+
+body {
+    font-family: 'Lexend Deca', sans-serif;
+    margin: 0;
+    
+}
