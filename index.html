@@ -29,7 +29,14 @@
   </header>
 
   <div class="content">
-    <div id="map"></div>
+    <div id="map">
+
+        <!-- leyenda -->
+        <div style="position: fixed; top:20vh;width:fit-content; left:10vw; padding:10px;background: rgba(62, 234, 70, 0.5);z-index:9999; ">
+          <span id="text-zoom">Zoom desactivado</span>
+        </div>
+
+    </div>
     <p>Duración aprox: 40min</p>
     <p>Distancia: 3km</p>
 
@@ -61,12 +68,29 @@
   <script src="leaflet/leaflet.js"></script>
 
   <script>
+    alert("para hacer zoom en el mapa debes hacer tap (tocar la pantalla)");
     var map = L.map('map').setView([28.921614, -13.673892], 16);
 
     // Rango de zoom permitido en el mapa.
     map.options.maxZoom = 18;
     map.options.minZoom = 15;
 
+    map.scrollWheelZoom.disable();
+    //habilitar el scroll cuando se enfoca en el mapa.
+   var divMapa=  document.getElementById('map');
+   var textoZoom =document.getElementById('text-zoom');
+   divMapa.addEventListener('focus', function(){map.scrollWheelZoom.enable();});
+
+   divMapa.addEventListener('click',function(){
+      if(map.scrollWheelZoom.enabled()){
+        map.scrollWheelZoom.disable();
+        textoZoom.textContent="Zoom desactivado";
+      }
+      else{
+        map.scrollWheelZoom.enable();
+        textoZoom.textContent="Zoom activado";
+      }
+    });
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
